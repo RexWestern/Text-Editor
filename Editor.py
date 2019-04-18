@@ -29,7 +29,7 @@ class GUI():
         save_btn = Menubutton(master=back, bg='gray', text='Save')
         save_btn.menu = Menu(save_btn)
         save_btn['menu'] = save_btn.menu
-        save_btn.menu.add_command(label='Save')
+        save_btn.menu.add_command(label='Save', command=lambda: save_file(file_name, txt_box))
         save_btn.place(x='50.5', y='0', height='30', width='50')
 
 
@@ -45,8 +45,13 @@ def open_file(file_name, txt_box):
         txt_box.insert('insert', f.read())
     f.close()
 
-def save_file():
-    
+def save_file(file_name, txt_box):
+    input = file_name.get(1.0, 'end-1c')
+    txt_input = txt_box.get(1.0, 'end-1c')
+    with open(input, 'w+') as f:
+        f.writelines(txt_input)
+
+    f.close()
 
     pass
 
